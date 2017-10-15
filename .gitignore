@@ -1,0 +1,16 @@
+.idea
+.vscode
+.log
+.pid
+.seed
+coverage
+.grunt
+build/Release
+node_modules
+.lock-wscript
+.env
+.env.*
+!.env.*.example
+logs/
+.todo
+static
