@@ -1,9 +1,35 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-export default function App({ items }) {
-  return (
-    <ul>
-      {items.map((item, i) => <li key={i}>{item}</li>)}
-    </ul>
-  );
+import { get as getItems } from './items';
+
+class App extends React.Component{
+  
+  state = {
+    items: []
+  }
+
+  async componentDidMount () {
+    this.props.getItems();
+  }
+
+  render () {
+    console.log("props", this.props);
+    const { items } = this.props;
+    return (
+      <ul>
+        {items.map((item, i) => <li key={i}>{item}</li>)}
+      </ul>
+    );
+  }
 }
+
+const mapStateToProps = state => {
+  return state;
+}
+
+const mapDispatchToProps = dispatch => ({
+  getItems: () => dispatch(getItems())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
