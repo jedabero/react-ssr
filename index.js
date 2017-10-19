@@ -5,6 +5,7 @@ import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { StaticRouter } from 'react-router-dom';
+import serialize from 'serialize-javascript';
 import express from 'express';
 import fs from 'fs';
 
@@ -18,7 +19,7 @@ const app = express();
 app.use(express.static('build/static'));
 
 app.get('**', async (req, res) => {
-  const initialState = { items: ['Poop'], loading: false };
+  const initialState = { items: ["Po</script><script>alert('You have an XSS vulnerability!')</script>op"], loading: false };
   const store = createStore(reducer, initialState, compose(applyMiddleware(thunk)));
   const context = {};
   const html = renderToString(
@@ -28,7 +29,8 @@ app.get('**', async (req, res) => {
       </StaticRouter>
     </Provider>
   );
-  const finalHtml = index.replace('<!-- ::APP:: -->', html).replace('{/* ::APP:: */}', JSON.stringify(initialState));
+  const serializedInitialState = serialize(JSON.stringify(initialState));
+  const finalHtml = index.replace('<!-- ::APP:: -->', html).replace('{/* ::APP:: */}', serializedInitialState);
   if (context.url) {
     res.writeHead(301, { Location: context.url });
     res.end();
