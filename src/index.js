@@ -14,7 +14,7 @@ const composeEnhanced = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const initialState = window.___DATA___;
 
 const store = createStore(reducer, initialState, composeEnhanced(applyMiddleware(thunk)));
-console.log("store", store);
+
 hydrate(
   <Provider store={store} >
     <App />

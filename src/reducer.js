@@ -1,5 +1,4 @@
 function reducer(state = { items: [], loading: false }, action) {
-  console.log("reducer", state, action);
   switch (action.type) {
     case 'LOADING_ITEMS':
       return {

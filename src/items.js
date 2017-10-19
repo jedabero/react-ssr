@@ -10,7 +10,6 @@ async function getItems() {
 const get = () => async (dispatch) => {
   dispatch({ type: 'LOADING_ITEMS' });
   const data = await getItems();
-  console.log("data", data);
   return dispatch({
     type: 'LOADED_ITEMS',
     data

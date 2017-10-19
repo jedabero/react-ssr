@@ -14,7 +14,6 @@ class App extends React.Component{
   }
 
   render () {
-    console.log("props", this.props);
     const { items } = this.props;
     return (
       <ul>

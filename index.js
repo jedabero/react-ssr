@@ -19,7 +19,6 @@ app.use(express.static('build/static'));
 app.get('**', async (req, res) => {
   const initialState = { items: ['Poop'], loading: false };
   const store = createStore(reducer, initialState, compose(applyMiddleware(thunk)));
-  console.log("store", store);
   const html = renderToString(
     <Provider store={store}>
       <App />
