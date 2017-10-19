@@ -7,9 +7,12 @@ import fs from 'fs';
 import App from './src/App';
 import getItems from './src/items';
 
-const index = fs.readFileSync(__dirname + '/index.html', 'utf8');
+const index = fs.readFileSync(__dirname + '/public/index.html', 'utf8');
 
 const app = express();
+
+app.use(express.static('build/static'));
+
 app.get('**', async (req, res) => {
   const items = await getItems();
   const html = renderToString(<App items={items} />);

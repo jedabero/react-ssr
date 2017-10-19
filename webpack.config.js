@@ -10,6 +10,6 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    path: __dirname + '/public'
+    path: __dirname + '/build/static/'
   }
 }

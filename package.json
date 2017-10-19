@@ -23,9 +23,8 @@
   },
   "scripts": {
     "webpack": "webpack",
-    "cpindex": "cp public/index.html static/index.html",
     "babel-frontend": "babel src -d static/src",
     "babel-backend": "babel index.js -d static",
-    "babel": "yarn cpindex && yarn babel-frontend && yarn babel-backend"
+    "babel": "yarn babel-frontend && yarn babel-backend"
   }
 }
